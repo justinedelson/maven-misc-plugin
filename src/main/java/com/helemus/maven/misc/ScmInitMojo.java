@@ -105,6 +105,8 @@ public class ScmInitMojo extends AbstractMojo {
         if (builder.length() > 0) {
             if (str.startsWith("git@")) {
                 return "scm:git:git://" + str.substring(4);
+            } else {
+                return "scm:git:" + str;
             }
         }
         return null;
