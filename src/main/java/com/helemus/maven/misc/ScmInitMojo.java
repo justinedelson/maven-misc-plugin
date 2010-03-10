@@ -83,9 +83,10 @@ public class ScmInitMojo extends AbstractMojo {
 
             public void consumeLine(String line) {
                 getLog().debug("** " + line);
-                if (line.contains("URL:")) {
+                int idx = line.indexOf("URL:");
+                if (idx >= 0) {
                     getLog().debug("found url line '" + line+"'");
-                    String postUrl = line.trim().substring(5);
+                    String postUrl = line.trim().substring(idx+3);
                     getLog().debug("post url = '" + postUrl+"'");
                     builder.append(postUrl);
                 }
