@@ -83,12 +83,14 @@ public class ScmInitMojo extends AbstractMojo {
 
             public void consumeLine(String line) {
                 getLog().debug("** " + line);
-                int idx = line.indexOf("URL:");
-                if (idx >= 0) {
-                    getLog().debug("found url line '" + line+"'");
-                    String postUrl = line.trim().substring(idx+3);
-                    getLog().debug("post url = '" + postUrl+"'");
-                    builder.append(postUrl);
+                if (builder.length() == 0) {
+                    int idx = line.indexOf("URL:");
+                    if (idx >= 0) {
+                        getLog().debug("found url line '" + line + "'");
+                        String postUrl = line.trim().substring(idx + 3);
+                        getLog().debug("post url = '" + postUrl + "'");
+                        builder.append(postUrl);
+                    }
                 }
             }
         }, new StreamConsumer() {
@@ -101,14 +103,15 @@ public class ScmInitMojo extends AbstractMojo {
 
         String str = builder.toString();
 
-        getLog().debug("got string '" + str+"'");
+        getLog().debug("got string '" + str + "'");
 
         if (builder.length() > 0) {
-            /*if (str.startsWith("git@")) {
-                return "scm:git:git://" + str.substring(4);
-            } else {*/
-                return "scm:git:" + str;
-            //}
+            /*
+             * if (str.startsWith("git@")) { return "scm:git:git://" +
+             * str.substring(4); } else {
+             */
+            return "scm:git:" + str;
+            // }
         }
         return null;
     }
