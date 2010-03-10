@@ -15,7 +15,7 @@
   <scm>
     <connection>scm:git:git@github.com:justinedelson/maven-misc-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:justinedelson/maven-misc-plugin.git</developerConnection>
-    <url>http://github.com/stinedelson/maven-misc-plugin</url>
+    <url>http://github.com/justinedelson/maven-misc-plugin</url>
   </scm>
   <dependencies>
     <dependency>
