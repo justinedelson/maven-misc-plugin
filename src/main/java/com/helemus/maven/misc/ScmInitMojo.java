@@ -67,7 +67,7 @@ public class ScmInitMojo extends AbstractMojo {
     }
 
     private String getViewURL(String url) {
-        if (url.startsWith("scm:git:git://github.com:")) {
+        if (url.startsWith("scm:git:git@github.com:")) {
             String str = "http://github.com/" + url.substring("scm:git:git://github.com:".length());
             return str.substring(0, str.length() - 4);
         }
@@ -103,11 +103,11 @@ public class ScmInitMojo extends AbstractMojo {
         getLog().debug("got string '" + str+"'");
 
         if (builder.length() > 0) {
-            if (str.startsWith("git@")) {
+            /*if (str.startsWith("git@")) {
                 return "scm:git:git://" + str.substring(4);
-            } else {
+            } else {*/
                 return "scm:git:" + str;
-            }
+            //}
         }
         return null;
     }
