@@ -73,7 +73,7 @@ public class InitScmMojo extends AbstractMojo {
 
     private String getViewURL(String url) {
         if (url.startsWith("scm:git:ssh://git@github.com/")) {
-            String str = "http://github.com/" + url.substring("scm:git:git@github.com/".length());
+            String str = "http://github.com/" + url.substring("scm:git:ssh://git@github.com/".length());
             return str.substring(0, str.length() - 4);
         }
         return null;
