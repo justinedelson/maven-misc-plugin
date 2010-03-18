@@ -5,7 +5,7 @@
   <parent>
     <artifactId>helemus-parent</artifactId>
     <groupId>com.helemus.maven</groupId>
-    <version>1-SNAPSHOT</version>
+    <version>1</version>
   </parent>
   <groupId>com.helemus.maven</groupId>
   <artifactId>maven-misc-plugin</artifactId>
@@ -13,9 +13,9 @@
   <packaging>maven-plugin</packaging>
   <name>maven-misc-plugin Maven Mojo</name>
   <scm>
-    <connection>scm:git:git@github.com:justinedelson/maven-misc-plugin.git</connection>
-    <developerConnection>scm:git:git@github.com:justinedelson/maven-misc-plugin.git</developerConnection>
-    <url>http://github.com/justinedelson/maven-misc-plugin</url>
+    <connection>scm:git:ssh://git@github.com:justinedelson/maven-misc-plugin.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com:justinedelson/maven-misc-plugin.git</developerConnection>
+    <url>http://github.com/b.com:justinedelson/maven-misc-plugin</url>
   </scm>
   <dependencies>
     <dependency>

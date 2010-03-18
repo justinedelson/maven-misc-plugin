@@ -20,7 +20,7 @@ import org.codehaus.plexus.util.cli.StreamConsumer;
  *
  * @goal init-scm
  */
-public class ScmInitMojo extends AbstractMojo {
+public class InitScmMojo extends AbstractMojo {
     /**
      * Location of the base directory.
      *
@@ -37,12 +37,17 @@ public class ScmInitMojo extends AbstractMojo {
      */
     private File pomFile;
 
+    /**
+     * @parameter expression="${scm.override}" default-value="false"
+     */
+    private boolean override;
+
     public void execute() throws MojoExecutionException {
         try {
             MavenXpp3Reader mavenReader = new MavenXpp3Reader();
             Model model = mavenReader.read(new FileReader(pomFile));
 
-            if (model.getScm() == null) {
+            if (model.getScm() == null || override) {
                 String scmURL = getGitUrl();
                 if (scmURL != null) {
                     Scm scm = new Scm();
@@ -67,7 +72,7 @@ public class ScmInitMojo extends AbstractMojo {
     }
 
     private String getViewURL(String url) {
-        if (url.startsWith("scm:git:git@github.com:")) {
+        if (url.startsWith("scm:git:ssh://git@github.com:")) {
             String str = "http://github.com/" + url.substring("scm:git:git@github.com:".length());
             return str.substring(0, str.length() - 4);
         }
@@ -106,12 +111,13 @@ public class ScmInitMojo extends AbstractMojo {
         getLog().debug("got string '" + str + "'");
 
         if (builder.length() > 0) {
-            /*
-             * if (str.startsWith("git@")) { return "scm:git:git://" +
-             * str.substring(4); } else {
-             */
-            return "scm:git:" + str;
-            // }
+
+            if (str.startsWith("git@")) {
+                return "scm:git:ssh://" + str;
+            } else {
+
+                return "scm:git:" + str;
+            }
         }
         return null;
     }
